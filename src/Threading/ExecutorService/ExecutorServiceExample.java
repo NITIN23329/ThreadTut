@@ -1,6 +1,6 @@
-package ExecutorService;
+package Threading.ExecutorService;
 
-import ArraySum.ArraySum;
+import Threading.ArraySum.ArraySum;
 
 import java.util.concurrent.*;
 

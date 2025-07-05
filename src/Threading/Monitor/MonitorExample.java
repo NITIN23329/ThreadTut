@@ -1,4 +1,4 @@
-package Monitor;
+package Threading.Monitor;
 
 public class MonitorExample {
 

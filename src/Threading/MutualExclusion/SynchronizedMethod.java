@@ -1,4 +1,4 @@
-package MutualExclusion;
+package Threading.MutualExclusion;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

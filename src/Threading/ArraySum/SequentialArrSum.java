@@ -1,4 +1,4 @@
-package ArraySum;
+package Threading.ArraySum;
 
 public class SequentialArrSum {
     int [] arr;

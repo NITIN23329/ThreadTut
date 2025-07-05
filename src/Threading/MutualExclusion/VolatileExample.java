@@ -1,5 +1,5 @@
 // File: NotVolatileExample.java
-package MutualExclusion;
+package Threading.MutualExclusion;
 class NotVolatileExample {
 
 //

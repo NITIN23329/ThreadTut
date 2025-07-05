@@ -1,4 +1,4 @@
-package Deadlock;
+package Threading.Deadlock;
 
 public class DeadlockExample {
     // File: DeadlockDemo.java

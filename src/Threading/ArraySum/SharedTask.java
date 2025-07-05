@@ -1,4 +1,4 @@
-package ArraySum;
+package Threading.ArraySum;
 
 class Task implements Runnable {
     private int count = 1;
