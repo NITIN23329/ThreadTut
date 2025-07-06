@@ -25,9 +25,14 @@ public class Game {
 
     public void start() {
         boolean gameOver = false;
+        int count = 0;
         while (!gameOver) {
             for(int i=0;i<players.size();i++) {
                 board.printBoard();
+                if(count == board.getSize() * board.getSize()){
+                    System.out.println("Tie");
+                    return;
+                }
                 Player p = players.get(i);
                 System.out.println("Turn: "+p);
                 boolean ok = false;
@@ -46,6 +51,7 @@ public class Game {
                     gameOver = true;
                     break;
                 }
+                count++;
 
             }
 
