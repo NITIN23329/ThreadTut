@@ -6,12 +6,10 @@ import java.util.Random;
 
 public class Game {
      private Board board;
-    private Dice dice;
     List<Player> players;
 
     public Game(int n ) {
         board = new Board(n);
-        dice = new Dice();
         players = new ArrayList<>();
 
         // randomly generate snake and ladder
@@ -29,7 +27,7 @@ public class Game {
     }
     private Player makeMove() {
         for(Player player : players) {
-            int newPosition = dice.roll() + player.getPosition();
+            int newPosition = Dice.roll() + player.getPosition();
             if(newPosition  > board.getN() * board.getN()){
                 System.out.println("Player " + player.getName() + " skipping");
                 continue;
