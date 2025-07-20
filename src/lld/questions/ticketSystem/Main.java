@@ -37,7 +37,12 @@ public class Main {
         Show selectedShow = displayShowStrategy.getShows().get(0);
 
         Booking booking = new Booking(1, new Customer("Nitin"),selectedShow, List.of(selectedShow.getSeats().get(0), selectedShow.getSeats().get(1)) );
-        bookingController.book(booking);
+
+        Thread thread1 = new Thread(() -> {
+            System.out.println(bookingController.book(booking));});
+        Thread thread2 = new Thread(() -> { System.out.println(bookingController.book(booking));});
+        thread1.start();
+        thread2.start();
 
 
     }

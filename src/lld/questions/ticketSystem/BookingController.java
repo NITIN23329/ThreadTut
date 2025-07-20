@@ -13,6 +13,9 @@ public class BookingController {
     }
     public boolean book(Booking booking) {
         synchronized (booking) {
+            for(Seat seat : booking.getSeats()) {
+                if(!seat.isAvailable())return false;
+            }
             Payment payment = new Payment();
             payment.pay(booking);
             if(payment.getStatus() !=  BookingStatus.SUCCESS)return false;
