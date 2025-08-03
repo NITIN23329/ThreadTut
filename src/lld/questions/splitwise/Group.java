@@ -6,15 +6,25 @@ import java.util.List;
 public class Group {
     private String groupName;
     private List<User> allUsers;
+    private List<Expense> expenses;
     public Group(String groupName) {
         this.groupName = groupName;
         allUsers = new ArrayList<>();
+        expenses = new ArrayList<>();
     }
     public void  addUser(User user) {
         allUsers.add(user);
     }
     public void removeUser(User user) {
         allUsers.remove(user);
+    }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(List<Expense> expenses) {
+        this.expenses = expenses;
     }
 }
 
@@ -35,6 +45,7 @@ class GroupController {
     }
 
     public void addExpense(Expense expense){
+        group.getExpenses().add(expense);
         balanceSheet.addExpense(expense);
     }
 
