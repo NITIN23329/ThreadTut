@@ -1,6 +1,5 @@
 package lld.questions.ticketSystem;
 
-import lld.questions.elevator.Display;
 
 import java.util.List;
 
