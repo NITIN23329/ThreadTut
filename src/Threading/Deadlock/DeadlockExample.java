@@ -5,7 +5,7 @@ public class DeadlockExample {
         private static final Object LOCK_A = new Object();
         private static final Object LOCK_B = new Object();
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws InterruptedException {
             Thread t1 = new Thread(() -> {
                 synchronized (LOCK_A) {
                     System.out.println("T1 locked A");
@@ -28,6 +28,11 @@ public class DeadlockExample {
 
             t1.start();
             t2.start();
+            t1.join();
+            t2.join();
+            System.out.println("Main thread ended");
+
+
         }
 
         private static void sleep(long ms) {
