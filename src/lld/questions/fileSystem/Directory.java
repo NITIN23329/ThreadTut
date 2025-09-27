@@ -2,12 +2,18 @@ package lld.questions.fileSystem;
 
 import java.util.*;
 
-public class Directory {
+interface DirectoryInterface {
+    public String getName();
+    public Map<String, DirectoryInterface> getSubDirectories();
+    public void addSubDirectory(String name);
+    public DirectoryInterface getParent();
+}
+public class Directory implements DirectoryInterface {
     private String name;
-    private Map<String, Directory> subDirectories;
-    private Directory parent;
+    private Map<String, DirectoryInterface> subDirectories;
+    private DirectoryInterface parent;
 
-    public Directory(String name, Directory parent) {
+    public Directory(String name, DirectoryInterface parent) {
         this.name = name;
         subDirectories = new HashMap<>();
         this.parent = parent;
@@ -15,21 +21,21 @@ public class Directory {
     public String getName() {
         return name;
     }
-    public Map<String, Directory> getSubDirectories() {
+    public Map<String, DirectoryInterface> getSubDirectories() {
         return subDirectories;
     }
     public void addSubDirectory(String name) {
-        Directory subDirectory = new Directory(name, this);
+        DirectoryInterface subDirectory = new Directory(name, this);
         subDirectories.put(name, subDirectory);
     }
-    public Directory getParent() {
+    public DirectoryInterface getParent() {
         return parent;
     }
 }
 
 class FileSystem {
-    Directory currentDirectory;
-    Directory rootDirectory;
+    DirectoryInterface currentDirectory;
+    DirectoryInterface rootDirectory;
 
     public FileSystem() {
         currentDirectory = new Directory("/", null);
@@ -37,7 +43,7 @@ class FileSystem {
     }
     public void cwd(){
 
-        Directory tempDirectory = currentDirectory;
+        DirectoryInterface tempDirectory = currentDirectory;
         String path = "";
         while (tempDirectory != null) {
             path = tempDirectory.getName() + "/" + path;
@@ -51,7 +57,7 @@ class FileSystem {
             System.out.println("Directory: "+ path+" already exists");
             return;
         }
-        Directory tempDirectory = this.currentDirectory;
+        DirectoryInterface tempDirectory = this.currentDirectory;
         if(path.startsWith("/")){
             tempDirectory = rootDirectory;
             path = path.substring(1);
@@ -79,7 +85,7 @@ class FileSystem {
             currentDirectory = rootDirectory;
             return;
         }
-        Directory tempDirectory = this.currentDirectory;
+        DirectoryInterface tempDirectory = this.currentDirectory;
         if(path.startsWith("/")){
             tempDirectory = rootDirectory;
             path = path.substring(1);
@@ -98,7 +104,7 @@ class FileSystem {
 
     public void ls(){
         System.out.println("Printing all the subdirectories");
-        for(Directory subDirectory : currentDirectory.getSubDirectories().values()){
+        for(DirectoryInterface subDirectory : currentDirectory.getSubDirectories().values()){
             System.out.println(subDirectory.getName());
         }
     }
